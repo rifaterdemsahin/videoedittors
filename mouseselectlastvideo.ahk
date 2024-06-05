@@ -3,17 +3,15 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 ; Specify the folder to search
-folderPath := "C:\Users\rifat\Videos"
+folderPath := "C:\Users\Pexabo\Videos"
 
 latestFile := ""
 latestTime := 0
 
 Loop, Files, %folderPath%\*.mp4, FR
 {
-    fileTime := A_LoopFileTimeCreated
-    ; Convert the file creation time to seconds since the epoch
-    fileTime := StrReplace(fileTime, ":", "", A_LoopFileName)
-    fileTime := StrReplace(fileTime, " ", "", A_LoopFileName)
+    ; Get the file creation time
+    FileGetTime, fileTime, %A_LoopFileFullPath%, C
     if (fileTime > latestTime)
     {
         latestTime := fileTime
